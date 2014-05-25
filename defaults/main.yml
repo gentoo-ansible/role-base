@@ -1,0 +1,53 @@
+---
+# Look for you timezone in /usr/share/zoneinfo.
+# Example: Europe/Prague
+timezone: Europe/Prague
+
+# Is your hardware clock set local (true), or UTC (false)?
+hwclock_local: true
+
+# Do you want to set the hardware clock to the current system time (software
+# clock) during shutdown?
+hwclock_systohc: false
+
+# Do you want to set the system time to the current hardware clock
+# during bootup?
+hwclock_hctosys: true
+
+# Should be copies of the /etc/skel files inside the /home/${USER} updated?
+# Only files that were not modified by a user will be updated.
+skel_update_homes: true
+
+# List of locales to generate.
+env_locales:
+  - en_US.UTF-8 UTF-8
+  - cs_CZ.UTF-8 UTF-8
+
+# The default system LANG.
+env_locale_lang: en_US.UTF-8
+
+# The default EDITOR.
+env_editor: /usr/bin/vim
+
+# List of common packages to install.
+common_pkgs_inst:
+  - app-arch/unzip
+  - app-editors/nano
+  - app-editors/vim
+  - app-misc/screen
+  - app-portage/eix
+  - app-portage/gentoolkit
+  - app-shells/fish
+  - app-text/tree
+  - dev-lang/ruby
+  - dev-vcs/git
+  - net-analyzer/tcpdump
+  - sys-apps/iproute2
+  - sys-power/acpid
+  - sys-process/htop
+  - sys-process/vixie-cron
+
+# List of common services to enable and start.
+common_services_enabled:
+  - acpid
+  - vixie-cron

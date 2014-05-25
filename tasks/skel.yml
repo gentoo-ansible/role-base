@@ -1,0 +1,23 @@
+---
+- name: collect list of skel files inside user homes that should be updated
+  script: find_skels_to_update.sh {{ item | basename }}
+  register: fileset
+  changed_when: false
+  with_fileglob: skel/.*
+  when: skel_update_homes
+
+- name: update /etc/skel
+  copy: >
+    src={{ item }}
+    dest=/etc/skel/{{ item | basename }}
+    owner=root group=root mode=0644
+  with_fileglob: skel/.*
+
+- name: update umodified skel files in user homes
+  copy: >
+    src=skel/{{ item.split(':')[0] }}
+    dest={{ item.split(':')[1] }}/{{ item.split(':')[0] }}
+    owner={{ item.split(':')[2] }}
+    group={{ item.split(':')[3] }}
+  with_flattened: fileset.results | map(attribute='stdout_lines') | list
+  when: skel_update_homes

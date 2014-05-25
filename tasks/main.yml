@@ -1,0 +1,52 @@
+---
+- name: /etc/localtime
+  copy: >
+    src=/usr/share/zoneinfo/{{ timezone }}
+    dest=/etc/localtime
+  tags: config
+
+- name: /etc/timezone
+  copy: >
+    content='{{ timezone }}\n'
+    dest=/etc/timezone
+  tags: config
+
+- name: setup hwclock
+  template: >
+    src=hwclock.j2
+    dest=/etc/conf.d/hwclock
+    owner=root mode=0600
+  tags: config
+
+- name: /etc/locale.gen
+  template: >
+    src=locale.gen.j2
+    dest=/etc/locale.gen
+  notify: update locales
+  tags: [config, env]
+
+- name: set default locale
+  eselect: module=locale target={{ env_locale_lang }}
+  notify: update env
+  tags: [config, env]
+
+- name: set default editor
+  eselect: module=editor target={{ env_editor }}
+  notify: update env
+  tags: [config, env]
+
+- name: update skel files
+  include: skel.yml tags=skel
+
+- name: install common packages
+  portage: package={{ item }}
+  with_items: common_pkgs_inst
+  tags: packages
+
+- name: enable and start common services
+  service: >
+    name={{ item }}
+    enabled=true
+    state=started
+  with_items: common_services_enabled
+  tags: services
