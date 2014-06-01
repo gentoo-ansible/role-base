@@ -38,15 +38,15 @@
 - name: update skel files
   include: skel.yml tags=skel
 
-- name: install common packages
+- name: install base packages
   portage: package={{ item }}
-  with_items: common_pkgs_inst
+  with_items: base_pkgs_inst
   tags: packages
 
-- name: enable and start common services
+- name: enable and start base services
   service: >
     name={{ item }}
-    enabled=true
+    enabled=yes
     state=started
-  with_items: common_services_enabled
+  with_items: base_services_enabled
   tags: services

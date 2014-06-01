@@ -29,8 +29,8 @@ env_locale_lang: en_US.UTF-8
 # The default EDITOR.
 env_editor: /usr/bin/vim
 
-# List of common packages to install.
-common_pkgs_inst:
+# List of base packages to install.
+base_pkgs_inst:
   - app-arch/unzip
   - app-editors/nano
   - app-editors/vim
@@ -47,7 +47,7 @@ common_pkgs_inst:
   - sys-process/htop
   - sys-process/vixie-cron
 
-# List of common services to enable and start.
-common_services_enabled:
+# List of base services to enable and start.
+base_services_enabled:
   - acpid
   - vixie-cron
