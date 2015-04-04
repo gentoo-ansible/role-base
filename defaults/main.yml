@@ -31,6 +31,7 @@ env_editor: /usr/bin/vim
 
 # List of base packages to install.
 base_pkgs_inst:
+  - app-admin/sudo
   - app-arch/unzip
   - app-editors/vim
   - app-misc/tmux
