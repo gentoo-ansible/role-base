@@ -37,7 +37,7 @@ base_pkgs_inst:
   - app-misc/screen
   - app-portage/eix
   - app-portage/gentoolkit
-  - app-shells/fish
+  - app-shells/zsh
   - app-text/tree
   - dev-lang/ruby
   - dev-vcs/git
