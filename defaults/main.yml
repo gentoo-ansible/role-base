@@ -32,7 +32,6 @@ env_editor: /usr/bin/vim
 # List of base packages to install.
 base_pkgs_inst:
   - app-arch/unzip
-  - app-editors/nano
   - app-editors/vim
   - app-misc/tmux
   - app-portage/eix
@@ -41,7 +40,6 @@ base_pkgs_inst:
   - app-text/tree
   - dev-lang/ruby
   - dev-vcs/git
-  - net-analyzer/tcpdump
   - sys-apps/iproute2
   - sys-power/acpid
   - sys-process/htop
