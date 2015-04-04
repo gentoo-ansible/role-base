@@ -34,7 +34,7 @@ base_pkgs_inst:
   - app-arch/unzip
   - app-editors/nano
   - app-editors/vim
-  - app-misc/screen
+  - app-misc/tmux
   - app-portage/eix
   - app-portage/gentoolkit
   - app-shells/zsh
