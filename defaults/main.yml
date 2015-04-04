@@ -1,4 +1,17 @@
 ---
+# The subsystem type we run in.
+#
+# Options:
+#   ''      - Nothing special
+#   lxc     - Linux Containers
+#   openvz  - Linux OpenVZ
+#   prefix  - Prefix
+#   uml     - Usermode Linux
+#   vserver - Linux vserver
+#   xen0    - Xen0 Domain
+#   xenU    - XenU Domain
+rc_subsystem_type: "{{ ansible_virtualization_type | default('') }}"
+
 # Look for you timezone in /usr/share/zoneinfo.
 # Example: Europe/Prague
 timezone: Europe/Prague

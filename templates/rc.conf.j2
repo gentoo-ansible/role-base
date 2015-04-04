@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 # Global OpenRC configuration settings
 
 # Set to "YES" if you want the rc system to try and start services
@@ -11,7 +12,8 @@
 
 # Set rc_interactive to "YES" and you'll be able to press the I key during
 # boot so you can choose to start specific services. Set to "NO" to disable
-# this feature.
+# this feature. This feature is automatically disabled if rc_parallel is
+# set to YES.
 rc_interactive="YES"
 
 # If we need to drop to a shell, you can specify it here.
@@ -50,6 +52,10 @@ rc_logger="YES"
 # The default value is: /var/log/rc.log
 #rc_log_path="/var/log/rc.log"
 
+# If you want verbose output for OpenRC, set this to yes. If you want
+# verbose output for service foo only, set it to yes in /etc/conf.d/foo.
+#rc_verbose=no
+
 # By default we filter the environment for our running scripts. To allow other
 # variables through, add them here. Use a * to allow all variables through.
 #rc_env_allow="VAR1 VAR2"
@@ -72,6 +78,10 @@ rc_logger="YES"
 #rc_crashed_stop=NO
 #rc_crashed_start=YES
 
+# Set rc_nocolor to yes if you do not want colors displayed in OpenRC
+# output.
+#rc_nocolor=NO
+
 ##############################################################################
 # MISC CONFIGURATION VARIABLES
 # There variables are shared between many init scripts
@@ -85,7 +95,7 @@ unicode="YES"
 
 # Below is the default list of network fstypes.
 #
-# afs cifs coda davfs fuse fuse.sshfs gfs glusterfs lustre ncpfs
+# afs ceph cifs coda davfs fuse fuse.sshfs gfs glusterfs lustre ncpfs
 # nfs nfs4 ocfs2 shfs smbfs
 #
 # If you would like to add to this list, you can do so by adding your
@@ -150,7 +160,7 @@ unicode="YES"
 #
 # This should be set to the value representing the environment this file is
 # PRESENTLY in, not the virtualization the environment is capable of.
-rc_sys="{{ rc_subsystem_type }}"
+rc_sys="{{ rc_subsystem_type | default('') }}"
 
 # This is the number of tty's used in most of the rc-scripts (like
 # consolefont, numlock, etc ...)
