@@ -14,7 +14,7 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-# Append to the history file instead of overwrite it 
+# Append to the history file instead of overwrite it
 shopt -s histappend
 
 # Append the previous command to history each time a prompt is shown
