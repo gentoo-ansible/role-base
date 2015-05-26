@@ -7,9 +7,10 @@
   tags: config
 
 - name: /etc/localtime
-  copy: >
-    src=/usr/share/zoneinfo/{{ timezone }}
-    dest=/etc/localtime
+  command: >
+    rsync -ci /usr/share/zoneinfo/{{ timezone }} /etc/localtime
+  register: _result
+  changed_when: _result.stdout != ""
   tags: config
 
 - name: /etc/timezone
