@@ -22,7 +22,7 @@
   template: >
     src=hwclock.j2
     dest=/etc/conf.d/hwclock
-    owner=root mode=0600
+    owner=root mode=0644
   tags: config
 
 - name: /etc/locale.gen
