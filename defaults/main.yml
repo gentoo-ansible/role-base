@@ -10,7 +10,7 @@
 #   vserver - Linux vserver
 #   xen0    - Xen0 Domain
 #   xenU    - XenU Domain
-rc_subsystem_type: "{{ ansible_virtualization_type | default('') }}"
+rc_subsystem_type: "{{ ansible_virtualization_type | replace('NA', '') }}"
 
 # Look for you timezone in /usr/share/zoneinfo.
 # Example: Europe/Prague
